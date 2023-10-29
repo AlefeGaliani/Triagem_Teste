@@ -1,102 +1,73 @@
-import React, {useEffect,useState} from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
 
-// função principal da página leitor
+
 function Login() {
+  
+  const [bibliotecaSelecionado, setBibliotecaSelecionado] = useState({ email: '', senha: '' });
 
-      // constante querecebe o leitor do db dando get
-      const [admin, setAdmin] = useState([]);
-      
-      // constante que atualiza a lista dos leitores
-      const [atualizar, setAtualizar] = useState();
+  function handleChangeBiblioteca(event) {
+    setBibliotecaSelecionado({ ...bibliotecaSelecionado, [event.target.name]: event.target.value });
+  }
 
-      const [adminSelecionado, setAdminSelecionado] = useState({});
+  function handleSubmit(event) {
+    event.preventDefault();
 
-      // função  que obtém os leitores do db dando get e armazena os dados na colouna
-      useEffect(() => {
-        axios.get("http://localhost:8080/api/admin/").then((result) => {
-          setAdmin(result.data);
-        });
-      }, [atualizar]);
+    const { email, senha } = bibliotecaSelecionado;
 
-      
-    function hadleChangeLivro(event) {
-        setAdminSelecionado({ ...adminSelecionado, [event.target.name]: event.target.value });
-      }
-
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        if (adminSelecionado.id === undefined) {
-          console.log('Inserir');
-          axios
-            .post('http://localhost:8080/api/admin/', adminSelecionado)
-            .then((result) => {
-              setAdmin([...admin, result.data]); // Adicionar novo admin ao estado
-            });
-        } else {
-          axios
-            .put('http://localhost:8080/api/admin/', adminSelecionado)
-            .then((result) => {
-              const updatedAdmins = admin.map((objt) => {
-                if (objt.id === result.data.id) {
-                  return result.data;
-                }
-                return objt;
-              });
-              setAdmin(updatedAdmins); // Atualizar admin específico no estado
-            });
+    axios.post("http://localhost:8080/api/biblioteca/login", { email, senha })
+      .then((response) => {
+        if (response.data.success) {
+          alert("Usuário ou senha inválidos.");
+        } else {          
+          window.location.href = "/home";           
         }
-        function limparFormulario() {
-            setAdminSelecionado({});
-          }
-          
-        limparFormulario();
-      }
+      })
+      .catch((error) => {
+        console.error("Erro ao fazer login:", error);
+        alert("Usuário ou senha não identificado, por favor retorne à tela de cadastro.");
+      });
+  }
 
-      function excluir(id) {
-        axios.delete("http://localhost:8080/api/admin/" + id).then((result) => {
-          const updatedAdmins = admin.filter((objt) => objt.id !== id);
-          setAdmin(updatedAdmins); // Remover admin excluído do estado
-        });
-      }
-
-    // Exibição da página com formulário para inserção dos dados e lista de leitores
-
-    //input em formato de botão submit inseri os dados
-
-    //tabela retorna os dados do db com botão para alterar e exluir
   return (
-      <div className="container"> <br/> <br/> <br /> <br />
-    <span className="titlelogin">
-      <div>
-        <h3> Seja bem vindo!</h3>
-        <h3> Faça o login para acessar o sistema</h3>
-        </div>
-      </span>
+   <div className="container">
+        <br />
+        <br />
+        <br />
+        <br />
+        <span className="titlelogin">
+          <div>
+            <h3>Seja bem vindo!</h3>
+            <h3>Faça o login para acessar o sistema</h3>
+          </div>
+        </span>
         <form onSubmit={handleSubmit}>
           <div className="col-3">
             <div>
-              <label className="form-label">Usuário:</label>
-              <input onChange={hadleChangeLivro} 
-              value={adminSelecionado.nome || ''} 
-              name="nome" type="text" className="form-control"/>
+              <label className="form-label">Email:</label>
+              <input
+                onChange={handleChangeBiblioteca}
+                value={bibliotecaSelecionado.email}
+                name="email"
+                type="text"
+                className="form-control" />
             </div>
             <div>
               <label className="form-label">Senha:</label>
-              <input onChange={hadleChangeLivro} 
-              value={adminSelecionado.senha || ''} 
-              name="senha" type="text" className="form-control"/>
+              <input
+                onChange={handleChangeBiblioteca}
+                value={bibliotecaSelecionado.senha}
+                name="senha"
+                type="password" /* Use type="password" para ocultar a senha */
+                className="form-control" />
             </div>
-            
-            <br/> 
-            <Link className='btn btn-dark'to="/home">Acessar</Link>          
+            <br />
+            <input type="submit" className="btn btn-dark" value="Acessar" />
           </div>
         </form>
-        <br/>
+        <br />
       </div>
-    );
-  }
-  
-  export default Login;
+  );
+}
+
+export default Login;

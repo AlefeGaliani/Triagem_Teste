@@ -5,7 +5,7 @@ function Header() {
   const location = useLocation()
   //Verificar se esta na pagina de login
 
-  const isLoginPage = location.pathname === '/'
+  const isLoginPage = location.pathname === '/' || location.pathname === '/cadastro' || location.pathname === '/cadastro-senha' || location.pathname === '/login'
 
   return (
     <nav className={Styles.header}>

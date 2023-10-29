@@ -1,0 +1,70 @@
+.conteudocadastrosenha h3 {
+    width: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.25em;
+    color: rgb(255, 255, 255);
+    background-color:var(--color-primary);
+    font-weight: 450;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 auto;
+    position: relative;
+    top: -40px;
+    font-size: 120%;
+}
+
+.conteudocadastrosenha h6 {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25em;
+  color: rgb(255, 255, 255);
+  font-weight: 450;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 auto;
+  position: relative;
+  top: 0px;
+  font-size: 120%;
+}
+
+
+  
+.conteudocadastrosenha input {
+  width: 415px;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
+  
+}
+
+ 
+.conteudocadastrosenha label {
+  white-space: nowrap;
+}
+
+.conteudocadastrosenha form {
+  width: 430px;
+  display: flex;
+  padding: 0.5em;
+  color: var(--color-textblack);
+  background-color: var(--color-lightgray);
+  font-weight: 450;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+  margin: 0 auto;
+  position: relative;
+  top: -40px;
+}
+
+.conteudocadastrosenha {
+  background-image: url('/public/images/banner5.png');
+  width: 100%;
+  height: 525px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 0px;
+}

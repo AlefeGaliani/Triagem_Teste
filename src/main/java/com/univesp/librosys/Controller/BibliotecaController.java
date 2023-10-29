@@ -15,36 +15,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.univesp.librosys.Dto.AdminLoginRequest;
-import com.univesp.librosys.Model.Admin;
-import com.univesp.librosys.Repository.AdminRepository;
-import com.univesp.librosys.Service.AdminService;
+import com.univesp.librosys.Dto.BibliotecaLoginRequest;
+import com.univesp.librosys.Dto.BibliotecaRequestDto;
+import com.univesp.librosys.Model.Biblioteca;
+import com.univesp.librosys.Repository.BibliotecaRepository;
+import com.univesp.librosys.Service.BibliotecaService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/admin")
+@RequestMapping("/api/biblioteca")
 
-public class AdminController {
-
-    
+public class BibliotecaController {
     @Autowired
-    private AdminRepository adminRepository;
+    private BibliotecaService bibliotecaService;
+
+     @Autowired
+    private BibliotecaRepository bibliotecaRepository;
 
 
     @PostMapping("/login")    
-    public ResponseEntity<?> login(@RequestBody AdminLoginRequest adminLoginRequest) {
-        String nome = adminLoginRequest.getNome();
-        String senha = adminLoginRequest.getSenha();
+    public ResponseEntity<?> login(@RequestBody BibliotecaLoginRequest bibliotecaLoginRequest) {
+        String email = bibliotecaLoginRequest.getEmail();
+        String senha = bibliotecaLoginRequest.getSenha();
 
-        // Busque o admin no banco de dados pelo nome de usuário
-        Admin admin = adminRepository.findByNome(nome);
+        // Busque o biblioteca no banco de dados pelo nome de usuário
+        Biblioteca biblioteca = bibliotecaRepository.findByEmail(email);
 
-        if (admin == null) {
+        if (biblioteca == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não cadastrado");
         }
 
         // Verifique a senha
-        if (senha.equals(admin.getSenha().toString())) {
+        if (senha.equals(biblioteca.getSenha().toString())) {
             return ResponseEntity.ok("Login bem-sucedido");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha inválidos");
@@ -53,29 +55,24 @@ public class AdminController {
         
     }
 
-     
-
-    @Autowired
-    private AdminService adminService;
-
     @GetMapping("/")
-    public List<Admin> buscarTodos(){
-       return adminService.buscarTodos();
+    public List<Biblioteca> buscarTodos(){
+       return bibliotecaService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Admin inserir(@RequestBody Admin admin){
-        return adminService.inserir(admin);
+    public Biblioteca inserir(@RequestBody BibliotecaRequestDto bibliotecaRequestDto){
+        return bibliotecaService.inserir(bibliotecaRequestDto);
     }
 
     @PutMapping("/")
-    public Admin alterar(@RequestBody Admin admin){
-        return adminService.alterar(admin);
+    public Biblioteca alterar(@RequestBody Biblioteca biblioteca){
+        return bibliotecaService.alterar(biblioteca);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        adminService.excluir(id);
+        bibliotecaService.excluir(id);
         return ResponseEntity.ok().build();
     }
 

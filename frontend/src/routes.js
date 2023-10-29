@@ -6,6 +6,12 @@ import RotaLeitor from "./pages/RotaLeitor";
 import PageNotFound from "./pages/PageNotFound";
 import RotaRetirada from "./pages/RotaRetirada";
 import RotaDevolucao from "./pages/RotaDevolucao";
+import RotaTelaCadastro from "./pages/RotaTelaCadastro";
+import RotaCadastroSenha from "./pages/RotaCadastroSenha";
+import RotaTelaInicial from "./pages/RotaTelaInicial";
+
+import { PrivateRoute } from "./pages/PrivateRoute";
+
 
 
 function AppRoutes() {
@@ -13,8 +19,16 @@ function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={ <Rotas />}></Route>
-                <Route path="/home" element={ <RotaHome />}></Route>
+            <Route path="/" element={ <RotaTelaInicial />}></Route>  
+
+                <Route path="/login" element={<Rotas />}></Route>
+                
+
+                <Route path="/cadastro" element={ <RotaTelaCadastro />}></Route>
+                <Route path="/cadastro-senha" element={ <RotaCadastroSenha />}></Route>
+
+                <Route path="/home" element={<PrivateRoute><RotaHome /></PrivateRoute> }></Route>
+
                 <Route path="/livro" element={ <RotaLivro />}></Route>
                 <Route path="/leitor" element={ <RotaLeitor />}></Route>
                 <Route path="/retirada" element={ <RotaRetirada />}></Route>

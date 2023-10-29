@@ -6,4 +6,6 @@ import com.univesp.librosys.Model.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Long>{
     
+    Admin findByNome(String nome);
+    
 }

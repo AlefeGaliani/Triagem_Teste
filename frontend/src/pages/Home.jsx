@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react';
+import React from 'react';
 import {Link} from "react-router-dom";
 
 // função principal da página Livro
@@ -32,12 +32,6 @@ function Home() {
                         <td>Registro de Retiradas</td>
                         <td>
                         <Link className='btn btn-secondary'to="/retirada">Acessar</Link>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Relatório de Devoluções</td>
-                        <td>
-                        <Link className='btn btn-secondary'to="/devolucao">Acessar</Link>
                         </td>
                     </tr>
                     <tr>

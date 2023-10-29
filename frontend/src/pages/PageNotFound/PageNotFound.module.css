@@ -13,6 +13,7 @@
 }
 
 .container img {
-    height: 250px;
+    width: 30%;
+    height: 30%;
     padding-bottom: 2rem;
 }
