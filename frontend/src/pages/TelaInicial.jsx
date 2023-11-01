@@ -33,11 +33,7 @@ function TelaIncial() {
         <br/>
         </td>
         <td>
-          <p>O Biblio Manager é uma aplicação web desenvolvida para auxiliar a gestão de acervos
-             literários em bibliotecas escolares, sebos e outros, visando simplificar o gerenciamento do fluxo literário 
-             destas organizações. Este projeto foi desenvolvido para o Projeto Integrador II da Universidade Virtual
-             do Estado de São Paulo (UNIVESP) baseando-se em uma pesquisa realizada com bibliotecas escolares, com o propósito 
-             de facilitar e agilizar o gerenciamento destas organizações.</p>
+          <p></p>
         </td>
       </tr>
     </tbody>
