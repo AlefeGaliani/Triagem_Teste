@@ -1,0 +1,27 @@
+Alterações no Frontend
+- Acrescentei a pagina TelaInicial na raiz da URI
+- Acrescentei a pagina TelaCadastro em /cadastro
+- Acrescentei a pagina CadastroSenha em /cadastro-senha
+- Alterei o caminho da tela de login para /login
+- Exclui da pagina home o acesso /devolucao
+- Criei o componente PrivateRoute para lidar com restrição de rotas mas ainda não implementei
+
+
+Alterações no Backend
+- Acrescentei a entidade e repository Biblioteca para armazenar o cadastro de usuário
+- Acrescentei em Dto BibliotecaRequestDto e BibliotecaLoginRequest para converter as entradas de novo usuário/login
+- Acrescentei o Service Biblioteca para lidar com as funções de inserir/alterar/excluir
+- Acrescentei o Service BibliotecaGerenciamento para lidar com as funções de validação/alteração de senha
+- Acrescentei o Controller de Biblioteca para habilitar o end point de /login e demais funções inserir/alterar/excluir
+- Acrescentei o Controller de BibliotecaGerenciamento para habilitar o end point de /senha-codigo (faz envio de código de validação de senha por email) e /senha-alterar (faz registro de senha)
+- Acrescentei o Service Email com a função que envia o email de código de validação para o usuário registrar a senha
+- Acrescentei em application.properties as configurações do servidor de email do spring boot 
+- Criei o email bibliomanageroficial@gmail.com para fazer o envio do código de validação para o usuário
+- Criei em templates o email-recuperacao-codigo.flth para personalizar o template de email de envio
+
+
+
+
+
+
+
