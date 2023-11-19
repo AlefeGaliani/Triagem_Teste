@@ -1,3 +1,6 @@
+Alterações no application.properties
+- Para rodar o servidor acrescentar credenciais do MySQL Server e de Email
+
 Alterações no Frontend
 - Acrescentei a pagina TelaInicial na raiz da URI
 - Acrescentei a pagina TelaCadastro em /cadastro
@@ -5,6 +8,8 @@ Alterações no Frontend
 - Alterei o caminho da tela de login para /login
 - Exclui da pagina home o acesso /devolucao
 - Criei o componente PrivateRoute para lidar com restrição de rotas mas ainda não implementei
+- Acreceit o componente AxiosConfig com configuração do axios para end point do servidor
+- Alterei as rotas de acesso nos métodos http das páginas que consomem o backend através do axios 
 
 
 Alterações no Backend
@@ -16,7 +21,7 @@ Alterações no Backend
 - Acrescentei o Controller de BibliotecaGerenciamento para habilitar o end point de /senha-codigo (faz envio de código de validação de senha por email) e /senha-alterar (faz registro de senha)
 - Acrescentei o Service Email com a função que envia o email de código de validação para o usuário registrar a senha
 - Acrescentei em application.properties as configurações do servidor de email do spring boot 
-- Criei o email bibliomanageroficial@gmail.com para fazer o envio do código de validação para o usuário
+- Criei o email remetente para fazer o envio do código de validação para o usuário
 - Criei em templates o email-recuperacao-codigo.flth para personalizar o template de email de envio
 
 
