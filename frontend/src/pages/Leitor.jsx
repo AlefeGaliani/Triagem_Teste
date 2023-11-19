@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 
 // função principal da página leitor
 function Leitor() {
@@ -14,7 +14,7 @@ function Leitor() {
 
       // função  que obtém os leitores do db dando get e armazena os dados na colouna
       useEffect(() => {
-          axios.get("http://localhost:8080/api/leitor/").then((result)=>{
+          axios.get("/api/leitor/").then((result)=>{
             setObjeto(result.data);
           });
       },[atualizar]);
@@ -30,13 +30,13 @@ function Leitor() {
         if (objetoSelecionado.id === undefined) {
           console.log('Inserir');
           axios
-            .post('http://localhost:8080/api/leitor/', objetoSelecionado)
+            .post('/api/leitor/', objetoSelecionado)
             .then((result) => {
               setAtualizar(result);
             });
         } else {
           axios
-            .put('http://localhost:8080/api/leitor/', objetoSelecionado)
+            .put('/api/leitor/', objetoSelecionado)
             .then((result) => {
               setAtualizar(result);
             });
@@ -49,7 +49,7 @@ function Leitor() {
       }
 
   function excluir(id){
-    axios.delete("http://localhost:8080/api/leitor/"+id).then(result => {
+    axios.delete("/api/leitor/"+id).then(result => {
       setAtualizar(result);
     });
 

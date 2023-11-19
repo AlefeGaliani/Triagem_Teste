@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 
 // função principal da página retirada
 function Devolucao() {
@@ -16,12 +16,12 @@ function Devolucao() {
 
       
       useEffect(() => {
-        axios.get("http://localhost:8080/api/devolucao/").then((result) => {          
+        axios.get("/api/devolucao/").then((result) => {          
         setDevolucao(result.data);
           console.log(devolucao)
         });
       
-        axios.get("http://localhost:8080/api/retirada/").then((result) => {
+        axios.get("/api/retirada/").then((result) => {
             setidretirada(result.data);
         });
 
@@ -52,13 +52,13 @@ function Devolucao() {
       
         if (devolucaoSelecionado.id === undefined) {
           axios
-            .post('http://localhost:8080/api/devolucao/', devolucaoData)
+            .post('/api/devolucao/', devolucaoData)
             .then((result) => {
               setAtualizar(result);
             });
         } else { 
           axios
-            .put('http://localhost:8080/api/devolucao/', devolucaoData)
+            .put('/api/devolucao/', devolucaoData)
             .then((result) => {
               setAtualizar(result);
             });
@@ -72,7 +72,7 @@ function Devolucao() {
       }
 
   function excluir(id){
-    axios.delete("http://localhost:8080/api/devolucao/"+id).then(result => {
+    axios.delete("/api/devolucao/"+id).then(result => {
       setAtualizar(result);
     });
   }

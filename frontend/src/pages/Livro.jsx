@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 
 // função principal da página Livro
 function Livro() {
@@ -17,7 +17,7 @@ function Livro() {
 
       
       useEffect(() => {
-          axios.get("http://localhost:8080/api/livros/").then((result)=>{
+          axios.get("/api/livros/").then((result)=>{
             setLivro(result.data);
           });
       },[atualizar]);
@@ -32,13 +32,13 @@ function Livro() {
         event.preventDefault();
         if (livroSelecionado.id === undefined) {
           axios
-            .post('http://localhost:8080/api/livros/', livroSelecionado)
+            .post('/api/livros/', livroSelecionado)
             .then((result) => {
               setAtualizar(result);
             });
         } else { 
           axios
-            .put('http://localhost:8080/api/livros/', livroSelecionado)
+            .put('/api/livros/', livroSelecionado)
             .then((result) => {
               setAtualizar(result);
             });
@@ -51,7 +51,7 @@ function Livro() {
       }
 
   function excluir(id){
-    axios.delete("http://localhost:8080/api/livros/"+id).then(result => {
+    axios.delete("/api/livros/"+id).then(result => {
       setAtualizar(result);
     });
   }

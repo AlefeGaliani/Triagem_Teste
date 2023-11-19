@@ -1,62 +1,105 @@
 .conteudocadastrosenha h3 {
-    width: 430px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.25em;
-    color: rgb(255, 255, 255);
-    background-color:var(--color-primary);
-    font-weight: 450;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0 auto;
-    position: relative;
-    top: -40px;
-    font-size: 120%;
-}
-
-.conteudocadastrosenha h6 {
-  width: 430px;
+  width: 410px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.25em;
-  color: rgb(255, 255, 255);
+  padding: 0.15em;
+  color: var(--color-textwhite);
+  background-color: var(--color-primary);
   font-weight: 450;
   font-family: 'Open Sans', sans-serif;
+  margin-left: 350px;  
+}
+
+.conteudocadastrosenha h4 {
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.15em;
+  margin-top: -8px;
+  color: var(--color-textwhite);
+  background-color: var(--color-primary);
+  font-weight: 350;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 350px;
+  box-shadow: 4px 4px 10px rgba(117, 104, 104, 0.2);   
+  font-size: 20px;     
+}
+
+.conteudocadastrosenha h6 {
+  width: 205px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.15em;
+  color: rgb(12, 12, 12);
+  font-weight: 650;
+  font-size: 140%;
+  font-family: 'Open Sans', sans-serif;
   margin: 0 auto;
-  position: relative;
-  top: 0px;
-  font-size: 120%;
 }
 
 
-  
-.conteudocadastrosenha input {
-  width: 415px;
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-  justify-content:center;
-  
+.conteudocadastrosenha table {
+  display: grid;
+  grid-column-gap: 5px;
+  color: var(--color-text);
+  font-family: 'Open Sans', sans-serif;
+  justify-content:space-between;
+  flex-direction: column;
+  align-items:center;
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 4px 4px 10px rgba(75, 71, 71, 0.2);
+  margin-left: 350px;
+  margin-top: 0px;   
+}
+
+.conteudocadastrosenha table td {
+  background-color: var(--color-lightgray);
+  border-top: 1px solid  var(--color-tertiary); 
+  border-bottom: 1px solid  var(--color-tertiary); 
+  text-align: center;
 }
 
  
 .conteudocadastrosenha label {
   white-space: nowrap;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 0.01em;
+  color: rgb(32, 31, 31);
+  font-weight: 650;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 120%;
 }
 
 .conteudocadastrosenha form {
-  width: 430px;
+  width: 410px;
   display: flex;
   padding: 0.5em;
-  color: var(--color-textblack);
+  color: var(--color-text);
   background-color: var(--color-lightgray);
-  font-weight: 450;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 100%;
-  margin: 0 auto;
-  position: relative;
-  top: -40px;
+  margin-left: 350px;
+  box-shadow: 4px 4px 10px rgba(105, 101, 101, 0.473);
+  border-radius: 10px;
+  background-color: var(--color-lightgray);
+  border-top: 2px solid  var(--color-tertiary); 
+  border-bottom: 2px solid  var(--color-tertiary);
+}
+
+.conteudocadastrosenha input {
+  width: 395px;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
+  font-weight: 650;
+  
 }
 
 .conteudocadastrosenha {

@@ -1,40 +1,38 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 import {Link} from "react-router-dom";
 
-// Função para enviar o email de validação
+
 function enviarEmailValidacao(email) {
-  // Corpo da solicitação
+
   const data = {
     email: email
   };
 
-  // Faz a solicitação POST para o endpoint biblioteca-gerenciamento/senha-codigo
-  axios.post('http://localhost:8080/api/biblioteca-gerenciamento/senha-codigo', data)
+
+  axios.post('/api/biblioteca-gerenciamento/senha-codigo', data)
     .then((response) => {
-      // Lógica de tratamento de sucesso
+
       console.log('Email de validação enviado com sucesso', response);
     })
     .catch((error) => {
-      // Lógica de tratamento de erro
+
       console.error('Erro ao enviar o email de validação', error);
     });
 }
 
-// função principal da página
+
 function TelaCadastro() {
 
-      // constante querecebe a biblioteca do db dando get
       const [biblioteca, setBiblioteca] = useState([]);
       
-      // constante que atualiza a lista das bibliotecas
+
       const [atualizar,] = useState();
 
       const [bibliotecaSelecionado, setBibliotecaSelecionado] = useState({});
 
-      // função  que obtém as bibliotecas do db dando get e armazena os dados na colouna
       useEffect(() => {
-        axios.get("http://localhost:8080/api/biblioteca/").then((result) => {
+        axios.get("/api/biblioteca/").then((result) => {
           setBiblioteca(result.data);
         });
       }, [atualizar]);
@@ -49,15 +47,15 @@ function TelaCadastro() {
         event.preventDefault();
         if (bibliotecaSelecionado.id === undefined) {
           axios
-            .post('http://localhost:8080/api/biblioteca/', bibliotecaSelecionado)
+            .post('/api/biblioteca/', bibliotecaSelecionado)
             .then((result) => {
-              setBiblioteca([...biblioteca, result.data]);// Adicionar nova biblioteca ao estado  
-              // Chame a função para enviar o email de validação com o email do usuário
+              setBiblioteca([...biblioteca, result.data]);
+
               enviarEmailValidacao(result.data.email);   
             });
         } else {
           axios
-            .put('http://localhost:8080/api/biblioteca/', bibliotecaSelecionado)
+            .put('/api/biblioteca/', bibliotecaSelecionado)
             .then((result) => {
               const updatedBiblioteca = biblioteca.map((objt) => {
                 if (objt.id === result.data.id) {
@@ -65,7 +63,7 @@ function TelaCadastro() {
                 }
                 return objt;
               });
-              setBiblioteca(updatedBiblioteca); // Atualizar biblioteca específico no estado
+              setBiblioteca(updatedBiblioteca); 
             });
         }
         function limparFormulario() {
@@ -75,17 +73,13 @@ function TelaCadastro() {
         limparFormulario();
       }
 
-    // Exibição da página com formulário para inserção dos dados para cadastro
 
-    //input em formato de botão submit inseri os dados
-
-    //TIRAR tabela retorna os dados do db com botão para alterar e exluir
   return (
       <div className="container"> <br/> <br/> 
     <span className="titlelogin">
       <div>
         <h3> CADASTRO DE USUÁRIO</h3>
-        <h3> Informe os dados de usuário para registro</h3>
+        <h4> Informe os dados de usuário para registro</h4>
         </div>
       </span>
         <form onSubmit={handleSubmit}>
@@ -107,7 +101,7 @@ function TelaCadastro() {
             <br/> 
             <h6> Você receberá em seu email o código de validação para cadastrar sua senha:</h6>
             <br/> 
-            <h6><Link className='btn btn-dark'to="/cadastro-senha">Cadastrar Senha</Link></h6>     
+            <h5><Link className='btn btn-dark'to="/cadastro-senha">Cadastrar Senha</Link></h5>     
           </div>
         </form>
         <br/>

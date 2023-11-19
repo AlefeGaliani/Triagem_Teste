@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 
 
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
 
     const { email, senha } = bibliotecaSelecionado;
 
-    axios.post("http://localhost:8080/api/biblioteca/login", { email, senha })
+    axios.post("/api/biblioteca/login", { email, senha })
       .then((response) => {
         if (response.data.success) {
           alert("Usuário ou senha inválidos.");
@@ -37,8 +37,8 @@ function Login() {
         <br />
         <span className="titlelogin">
           <div>
-            <h3>Seja bem vindo!</h3>
-            <h3>Faça o login para acessar o sistema</h3>
+            <h3>SEJA BEM VINDO!</h3>
+            <h4>Faça o login para acessar o sistema</h4>
           </div>
         </span>
         <form onSubmit={handleSubmit}>

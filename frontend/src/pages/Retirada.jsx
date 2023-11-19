@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 
 // função principal da página retirada
 function Retirada() {
@@ -18,16 +18,16 @@ function Retirada() {
      
       
       useEffect(() => {
-        axios.get("http://localhost:8080/api/retirada/").then((result) => {          
+        axios.get("/api/retirada/").then((result) => {          
           setRetirada(result.data);
           console.log(retirada)
         });
       
-        axios.get("http://localhost:8080/api/livros/").then((result) => {
+        axios.get("/api/livros/").then((result) => {
           setidlivros(result.data);
         });
       
-        axios.get("http://localhost:8080/api/leitor/").then((result) => {
+        axios.get("/api/leitor/").then((result) => {
           setidleitor(result.data);
         });
       }, [atualizar]);
@@ -59,13 +59,13 @@ function Retirada() {
       
         if (retiradaSelecionado.id === undefined) {
           axios
-            .post('http://localhost:8080/api/retirada/', retiradaData)
+            .post('/api/retirada/', retiradaData)
             .then((result) => {
               setAtualizar(result);
             });
         } else { 
           axios
-            .put('http://localhost:8080/api/retirada/', retiradaData)
+            .put('/api/retirada/', retiradaData)
             .then((result) => {
               setAtualizar(result);
             });
@@ -79,7 +79,7 @@ function Retirada() {
       }
 
   function excluir(id){
-    axios.delete("http://localhost:8080/api/retirada/"+id).then(result => {
+    axios.delete("/api/retirada/"+id).then(result => {
       setAtualizar(result);
     });
   }

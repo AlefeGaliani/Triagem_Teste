@@ -23,10 +23,7 @@ public class BibliotecaGerenciamentoService {
     @Autowired
     private EmailService emailService;
 
-    /* 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-    */
+
 
     public String solicitarCodigo(String email) {
         Biblioteca biblioteca = bibliotecaRepository.findByEmail(email);
@@ -37,9 +34,6 @@ public class BibliotecaGerenciamentoService {
         proprMap.put("nome", biblioteca.getNome());
         proprMap.put("mensagem", "Seu cadastro foi efetuado com sucesso, use este código para registrar sua senha de usuário Bilbio Manager: " + biblioteca.getCodigoRecuperacaoSenha());
         emailService.enviarEmailTemplate(biblioteca.getEmail(), "Cadastro de usuário Biblio Manager", proprMap);
-        /*emailService.enviarEmailTexto(biblioteca.getEmail(), "Código de Cadastro de Senha Usuário Biblio Manager",
-                "Olá, seu cadastro foi efetuado com sucesso, use este código para registrar sua senha de usuário Bilbio Manager: " + biblioteca.getCodigoRecuperacaoSenha());
-        */
         return "Código Enviado!";
     }
 
@@ -50,8 +44,7 @@ public class BibliotecaGerenciamentoService {
         if (bibliotecaBanco != null) {
             Date diferenca = new Date(new Date().getTime() - bibliotecaBanco.getDataEnvioCodigo().getTime());
             if (diferenca.getTime() / 1000 < 900) {
-                //RETORNAR COM PASSENCODER DEPOIS
-                //bibliotecaBanco.setSenha(passwordEncoder.encode(biblioteca.getSenha()));
+
                 bibliotecaBanco.setSenha(biblioteca.getSenha());
                 bibliotecaBanco.setCodigoRecuperacaoSenha(null);
                 bibliotecaRepository.saveAndFlush(bibliotecaBanco);

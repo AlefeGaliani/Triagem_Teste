@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import axios from 'axios';
+import axios from "../axiosConfig.js";
 import {Link} from "react-router-dom";
 
 
@@ -16,7 +16,7 @@ function CadastroSenha() {
 
       // função  que obtém as bibliotecas do db dando get e armazena os dados na colouna
       useEffect(() => {
-        axios.get("http://localhost:8080/api/biblioteca/").then((result) => {
+        axios.get("/api/biblioteca/").then((result) => {
           setBiblioteca(result.data);
         });
       }, [atualizar]);
@@ -31,13 +31,13 @@ function CadastroSenha() {
         event.preventDefault();
         if (bibliotecaSelecionado.id === undefined) {
           axios
-            .post('http://localhost:8080/api/biblioteca-gerenciamento/senha-alterar', bibliotecaSelecionado)
+            .post('/api/biblioteca-gerenciamento/senha-alterar', bibliotecaSelecionado)
             .then((result) => {
               setBiblioteca([...biblioteca, result.data]);// Adicionar nova biblioteca ao estado  
             });
         } else {
           axios
-            .put('http://localhost:8080/api/biblioteca-gerenciamento/senha-alterar', bibliotecaSelecionado)
+            .put('/api/biblioteca-gerenciamento/senha-alterar', bibliotecaSelecionado)
             .then((result) => {
               const updatedBiblioteca = biblioteca.map((objt) => {
                 if (objt.id === result.data.id) {
@@ -61,11 +61,11 @@ function CadastroSenha() {
 
     //TIRAR tabela retorna os dados do db com botão para alterar e exluir
   return (
-      <div className="container"> <br/> <br/> <br /> <br />
+      <div className="container"> <br/>  
     <span className="titlelogin">
       <div>
-      <h3> </h3>
-        <h3> Informe seu email e código de validação para cadastrar a senha</h3>
+      <h3> CADASTRO DE SENHA</h3> 
+       <h4> Informe seu e-mail e código de validação para cadastrar a senha</h4>
         </div>
       </span>
         <form onSubmit={handleSubmit}>
@@ -86,16 +86,28 @@ function CadastroSenha() {
               <label className="form-label">Senha:</label>
               <input onChange={hadleChangeBiblioteca} 
               value={bibliotecaSelecionado.senha || ''} 
-              name="senha" type="text" className="form-control"/>
+              name="senha" type="password" className="form-control"/>
             </div>
             <br/> 
             <input type="submit" className="btn btn-dark" value="Cadastrar"></input>
-            <br/> 
-            <h6> <Link className='btn btn-dark'to="/login">Fazer Login</Link> </h6>        
+                               
           </div>
         </form>
-        <br/>
+        <br/>  
+        <table>
+              <tbody>
+                <tr>
+                  <td>
+                  <h6> Acesse o sistema: </h6>
+                  </td>
+                  <td>
+                  <h6> <Link className='btn btn-dark'to="/login">Fazer Login</Link> </h6>
+                  </td>                      
+                </tr>
+              </tbody>
+        </table> <br/>  <br/>  <br/>  
       </div>
+      
     );
   }
   
