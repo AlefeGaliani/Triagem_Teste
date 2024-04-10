@@ -13,36 +13,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.univesp.librosys.Model.Leitor;
-import com.univesp.librosys.Service.LeitorService;
+import com.univesp.librosys.Model.Paciente;
+import com.univesp.librosys.Service.PacienteService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/leitor")
-public class LeitorController {
-    
+@RequestMapping("/api/paciente")
+
+public class PacienteController {
+     
+
     @Autowired
-    private LeitorService leitorService;
+    private PacienteService adminService;
 
     @GetMapping("/")
-    public List<Leitor> buscarTodos(){
-       return leitorService.buscarTodos();
+    public List<Paciente> buscarTodos(){
+       return adminService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Leitor inserir(@RequestBody Leitor leitor){
-        return leitorService.inserir(leitor);
+    public Paciente inserir(@RequestBody Paciente paciente){
+        return adminService.inserir(paciente);
     }
 
     @PutMapping("/")
-    public Leitor alterar(@RequestBody Leitor leitor){
-        return leitorService.alterar(leitor);
+    public Paciente alterar(@RequestBody Paciente paciente){
+        return adminService.alterar(paciente);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        leitorService.excluir(id);
+        adminService.excluir(id);
         return ResponseEntity.ok().build();
     }
-    
+
 }

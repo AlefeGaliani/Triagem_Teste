@@ -13,35 +13,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.univesp.librosys.Model.Devolucao;
-import com.univesp.librosys.Service.DevolucaoService;
+import com.univesp.librosys.Model.Atendimento;
+import com.univesp.librosys.Service.AtendimentoService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/devolucao")
+@RequestMapping("/api/atendimento")
 
-public class DevolucaoController {
+public class AtendimentoController {
+     
+
     @Autowired
-    private DevolucaoService devolucaoService;
+    private AtendimentoService adminService;
 
     @GetMapping("/")
-    public List<Devolucao> buscarTodos(){
-       return devolucaoService.buscarTodos();
+    public List<Atendimento> buscarTodos(){
+       return adminService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Devolucao inserir(@RequestBody Devolucao devolucao){
-        return devolucaoService.inserir(devolucao);
+    public Atendimento inserir(@RequestBody Atendimento atendimento){
+        return adminService.inserir(atendimento);
     }
 
     @PutMapping("/")
-    public Devolucao alterar(@RequestBody Devolucao devolucao){
-        return devolucaoService.alterar(devolucao);
+    public Atendimento alterar(@RequestBody Atendimento atendimento){
+        return adminService.alterar(atendimento);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
-        devolucaoService.excluir(id);
+        adminService.excluir(id);
         return ResponseEntity.ok().build();
     }
+
 }
